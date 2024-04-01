@@ -1,6 +1,7 @@
 <script setup>
 import {reactive, ref} from 'vue'
 
+const mostrarresultado = ref(false)
 const titulo = ref('Titulo')
 const produto = reactive({
   nome: 'Produto',
@@ -28,8 +29,13 @@ function formatarpreco(preco){
   <div class="row">
   <div>
     <label for="">preco: </label>
-    <input type="text" v-model="produto.preco"></div>
+    <input type="number" v-model="produto.preco"></div>
   </div>
+  <div class="row">
+   <label for="">quantidade</label>
+   <input type="number" v-model="produto.quantidade">
+  </div>
+  <button @click="mostrarresultado = !mostrarresultado">Mostar</button>
   </div>
   <div class="resultado">
     <h2>Resultado</h2>
@@ -37,6 +43,7 @@ function formatarpreco(preco){
     <p>preco: {{ formatarpreco(produto.preco) }}</p>
     <p>quantidade: {{ produto.quantidade }}</p>
     <p>categorias: {{ produto.categorias }}</p>
+    <p> {{ mostrarresultado }}</p>
   </div>
 </div>
 </template>
