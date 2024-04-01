@@ -22,22 +22,25 @@ function formatarpreco(preco){
     <h2>Formulario</h2>
     <div class="row">
     <input type="text" v-model="titulo"/>
-    <div>
+    <form @submit.prevent="mostrarresultado = !mostrarresultado">
+    <div class="row">
     <label for="">nome</label>
-    <input type="text" v-model="produto.nome"></div>
+    <input type="text" v-model="produto.nome" required></div>
   </div>
   <div class="row">
   <div>
     <label for="">preco: </label>
-    <input type="number" v-model="produto.preco"></div>
+    <input type="number" v-model="produto.preco" required></div>
   </div>
   <div class="row">
    <label for="">quantidade</label>
    <input type="number" v-model="produto.quantidade">
   </div>
-  <button @click="mostrarresultado = !mostrarresultado">Mostar</button>
+  <button type="submit">Mostar</button>
+</form>
   </div>
-  <div class="resultado">
+  <div ></div>
+  <div v-if="mostrarresultado" class="resultado">
     <h2>Resultado</h2>
     <p>nome: {{ produto.nome }}</p>
     <p>preco: {{ formatarpreco(produto.preco) }}</p>
