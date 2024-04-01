@@ -1,7 +1,17 @@
 <script setup>
-import {ref} from 'vue'
+import {reactive, ref} from 'vue'
 
 const titulo = ref('Titulo')
+const produto = reactive({
+  nome: 'Produto',
+  preco: 19.99,
+  quantidade:10,
+  categorias: []
+})
+function formatarpreco(preco){
+  return `R$ ${preco.toFixed(2).replace('.', '.')}`
+}
+
 </script>
 
 <template>
@@ -9,10 +19,24 @@ const titulo = ref('Titulo')
 <div class="conteiner">
   <div class="formulario">
     <h2>Formulario</h2>
+    <div class="row">
     <input type="text" v-model="titulo"/>
+    <div>
+    <label for="">nome</label>
+    <input type="text" v-model="produto.nome"></div>
+  </div>
+  <div class="row">
+  <div>
+    <label for="">preco: </label>
+    <input type="text" v-model="produto.preco"></div>
+  </div>
   </div>
   <div class="resultado">
-    Resultado
+    <h2>Resultado</h2>
+    <p>nome: {{ produto.nome }}</p>
+    <p>preco: {{ formatarpreco(produto.preco) }}</p>
+    <p>quantidade: {{ produto.quantidade }}</p>
+    <p>categorias: {{ produto.categorias }}</p>
   </div>
 </div>
 </template>
@@ -36,5 +60,11 @@ const titulo = ref('Titulo')
 }
 .resultado{
   background-color: coral;
+}
+.formulario .row {
+margin: 10 px auto;
+width: 70%;
+display: flex;
+justify-content: space-between;
 }
 </style>
